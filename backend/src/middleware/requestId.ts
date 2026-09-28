@@ -11,21 +11,38 @@ export const REQUEST_ID_HEADER = 'X-Request-Id';
 // Sensitive headers and query parameters to redact from logs
 const SENSITIVE_HEADERS = new Set([
   'authorization',
+  'proxy-authorization',
   'cookie',
   'set-cookie',
   'x-api-key',
   'x-wallet-secret',
   'x-secret-key',
+  'x-webhook-secret',
+  'x-signature',
 ]);
 
 const SENSITIVE_QUERY_PARAMS = new Set([
+  'authorization',
   'token',
   'secret',
   'password',
+  'passphrase',
   'key',
   'api_key',
+  'apiKey',
+  'wallet_secret',
+  'walletSecret',
+  'private_key',
+  'privateKey',
+  'client_secret',
+  'clientSecret',
+  'webhook_secret',
+  'webhookSecret',
+  'signature',
   'access_token',
   'refresh_token',
+  'session_token',
+  'code',
 ]);
 
 /**
