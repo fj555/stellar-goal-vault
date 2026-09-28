@@ -45,9 +45,12 @@ rows cannot be persisted even if application validation is bypassed:
 Fresh databases receive these as `CHECK` constraints on `CREATE TABLE`. Existing
 databases receive equivalent `BEFORE INSERT/UPDATE` triggers
 (`campaigns_persistence_integrity_*`) because SQLite cannot add `CHECK` via
-`ALTER TABLE`. On migrate, negative `pledged_amount` values are soft-cleaned to
-`0` so valid accounting updates continue; other historical rows are left
-unchanged. Invalid inserts/updates are aborted.
+`ALTER TABLE`. The migration runner invokes the guard after schema upgrades so
+legacy datasets are cleaned only where the invariant is safe to repair, while
+invalid inserts and updates remain rejected at the database boundary. On
+migrate, negative `pledged_amount` values are soft-cleaned to `0` so valid
+accounting updates continue; other historical rows are left unchanged. Invalid
+inserts/updates are aborted.
 
 ## Migration expectations
 
